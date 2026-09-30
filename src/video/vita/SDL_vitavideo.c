@@ -755,7 +755,8 @@ void VITA_VideoQuit(_THIS)
 #if SDL_VIDEO_OPENGL_VITAGL
     if (vgl_initialized)
     {
-        vglEnd();
+        /* Current vitaGL retains its context until process exit. */
+        glFinish();
         vgl_initialized = 0;
     }
     this->gl_config.driver_loaded = 0;
